@@ -246,12 +246,12 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-//        ['header' => 'account_settings'],
-//        [
-//            'text' => 'profile',
-//            'url'  => 'admin/settings',
-//            'icon' => 'fas fa-fw fa-user',
-//        ],
+        ['header' => 'account_settings'],
+        [
+            'text' => 'Reservation',
+            'url'  => 'reservation',
+            'icon' => 'fas fa-fw fa-user',
+        ],
 //        [
 //            'text' => 'change_password',
 //            'url'  => 'admin/settings',
