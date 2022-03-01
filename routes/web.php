@@ -27,5 +27,5 @@ Auth::routes();
 Route::middleware(\App\Http\Middleware\CheckToken::class)->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('reservation',\App\Http\Controllers\ReservationController::class);
-    Route::resource('driver',\App\Http\Controllers\DriverController::class);
+    //Route::resource('driver',\App\Http\Controllers\DriverController::class);
 });

@@ -9,7 +9,6 @@
 @stop
 
 
-
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -27,10 +26,11 @@
 
                     @foreach($drivers as $driver)
                     <br>
+
                         @foreach($driver->reservations as $reservation)
                         <tr>
                             <td>{{$reservation->numberOfReservation}}</td>
-                            <td>{{$reservation->date}}</td>
+                            <td>{{$driver->name}}</td>
                             <td>{{$reservation->status}}</td>
                             <td><a class="btn btn-default btn-xs" href="reservation/{{$reservation->id}}">
                                     <i class="fa fa-eye"></i>
