@@ -3,9 +3,7 @@
 @section('title', env('APP_NAME'))
 
 @section('content_header')
-<h1 class="m-0 text-dark">{{__('Reservations ')}}{{$reservation->numberOfReservation}}
-
-</h1>
+<h1 class="m-0 text-dark">{{__('Reservations ')}}{{$reservation->numberOfReservation}}</h1>
 @stop
 
 @section('content')
@@ -30,12 +28,24 @@
                         <td>{{$reservation->typeDay}}</td>
                         <td>{{$reservation->typeRoute}}</td>
                         <td>{{$reservation->status}}</td>
+                        <td><a class="btn btn-danger btn-xs" href="{{$reservation->id}}/delete">
+                                <i class="fa fa-trash"></i>
+                            </a>
+
+                        </td>
                     </tr>
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
 </div>
 @stop
+
+@section('js')
+<script src="https://cdn.datatables.net/plug-ins/1.11.1/i18n/fr_fr.json"></script>
+<script>
+    $('.datatable').DataTable({
+    });
+</script>
+@endsection

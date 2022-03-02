@@ -23,4 +23,9 @@ class ApiModel extends Model
     public static function post($route,$params=[]){
         return self::call($route,'post',$params);
     }
+
+    public static function delet($route,$params=[]){
+        return self::call($route,'delete',$params);
+    }
+
 }

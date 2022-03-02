@@ -3,9 +3,7 @@
 @section('title', env('APP_NAME'))
 
 @section('content_header')
-<h1 class="m-0 text-dark">{{__('Reservations')}}
-
-</h1>
+<h1 class="m-0 text-dark">{{__('Reservations')}}</h1>
 @stop
 
 
@@ -35,6 +33,9 @@
                             <td><a class="btn btn-default btn-xs" href="reservation/{{$reservation->id}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
+                                <a class="btn btn-danger btn-xs" href="reservation/{{$reservation->id}}/delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach
@@ -46,3 +47,6 @@
     </div>
 </div>
 @stop
+
+
+

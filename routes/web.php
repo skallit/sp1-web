@@ -27,5 +27,6 @@ Auth::routes();
 Route::middleware(\App\Http\Middleware\CheckToken::class)->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('reservation',\App\Http\Controllers\ReservationController::class);
+    Route::get('reservation/{reservation}/delete',[\App\Http\Controllers\ReservationController::class,'delete'])->name('reservation.delete');
     //Route::resource('driver',\App\Http\Controllers\DriverController::class);
 });

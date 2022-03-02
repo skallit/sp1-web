@@ -18,4 +18,14 @@ class ReservationController extends Controller
         $reservation = ApiModel::get('getReservation/'.$id)->success;
         return view('reservation.show',['reservation'=>$reservation]);
     }
+
+    public function delete($id){
+        $reservation = ApiModel::get('getReservation/'.$id)->success;
+        return view('reservation.delete',['reservation'=>$reservation]);
+    }
+
+    public function destroy($id){
+        $reservation = ApiModel::delet('delReservation/'.$id);
+        return redirect(route('reservation.index'));
+    }
 }
