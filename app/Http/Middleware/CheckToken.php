@@ -12,7 +12,7 @@ class CheckToken
     public function handle(Request $request, Closure $next){
 
         if (empty(Session::get('api_token'))){
-            return redirect('home');
+            return redirect('login');
         }
         return  $next($request);
     }

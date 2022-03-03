@@ -57,7 +57,9 @@ class LoginController extends Controller
 
             return redirect('home');
         }else{
-            return redirect('login');
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
         }
     }
 }
