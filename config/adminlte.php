@@ -248,9 +248,19 @@ return [
         ],
         ['header' => 'account_settings'],
         [
+            'text' => 'Profil',
+            'url'  => 'profil',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Logout',
+            'url'  => 'logout',
+        ],
+        ['header' => 'navigation'],
+        [
             'text' => 'Reservation',
             'url'  => 'reservation',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-share',
         ],
 //        [
 //            'text' => 'change_password',
