@@ -19,15 +19,21 @@
                         <th>{{__('typeDay')}}</th>
                         <th>{{__('typeRoute')}}</th>
                         <th>{{__('status')}}</th>
+                        <th>{{__('departure_agency / department')}}</th>
+                        <th>{{__('return_agency / department')}}</th>
+                        <th>{{__('vehicle / licence plate')}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>{{$reservation->numberOfReservation}}</td>
                         <td>{{$reservation->date}}</td>
-                        <td>{{$reservation->typeDay}}</td>
-                        <td>{{$reservation->typeRoute}}</td>
-                        <td>{{$reservation->status}}</td>
+                        <td>{{$reservation->type_day->type}}</td>
+                        <td>{{$reservation->type_route->type}}</td>
+                        <td>{{$reservation->status->status}}</td>
+                        <td>{{$reservation->departure_agency->city}} / {{$reservation->departure_agency->department}}</td>
+                        <td>{{$reservation->return_agency->city}} / {{$reservation->return_agency->department}}</td>
+                        <td>{{$reservation->vehicle->nameModel}} / {{$reservation->vehicle->licensePlate}}</td>
                         <td><a class="btn btn-danger btn-xs" href="{{$reservation->id}}/delete">
                                 <i class="fa fa-trash"></i>
                             </a>

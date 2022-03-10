@@ -3,7 +3,12 @@
 @section('title', env('APP_NAME'))
 
 @section('content_header')
-<h1 class="m-0 text-dark">{{__('Reservations')}}</h1>
+<h1 class="m-0 text-dark">{{__('Reservations')}}
+    <a href="{{route('reservation.create')}}" class="btn btn-primary float-right">
+        <i class="fa fa-plus"></i>
+        {{__('New reservation')}}
+    </a>
+</h1>
 @stop
 
 
@@ -23,13 +28,13 @@
                     <tbody>
 
                     @foreach($drivers as $driver)
-                    <br>
+
 
                         @foreach($driver->reservations as $reservation)
                         <tr>
                             <td>{{$reservation->numberOfReservation}}</td>
                             <td>{{$driver->name}}</td>
-                            <td>{{$reservation->status}}</td>
+                            <td>{{$reservation->status->status}}</td>
                             <td><a class="btn btn-default btn-xs" href="reservation/{{$reservation->id}}">
                                     <i class="fa fa-eye"></i>
                                 </a>

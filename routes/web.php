@@ -23,7 +23,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::middleware(\App\Http\Middleware\CheckToken::class)->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('reservation',\App\Http\Controllers\ReservationController::class);
@@ -31,5 +30,6 @@ Route::middleware(\App\Http\Middleware\CheckToken::class)->group(function(){
     Route::get('logout',[\App\Http\Controllers\Auth\LogoutController::class,'logout'])->name('login');
     Route::resource('profil',\App\Http\Controllers\UserController::class);
     Route::post('updatePassword',[\App\Http\Controllers\UserController::class,'updatePassword']);
+    Route::post('reservation/vehicleChoice',[\App\Http\Controllers\ReservationController::class,'vehicleChoice']);
     //Route::resource('driver',\App\Http\Controllers\DriverController::class);
 });
