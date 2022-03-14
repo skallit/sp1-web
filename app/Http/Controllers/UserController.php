@@ -14,6 +14,7 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
+
         $apiResponse = ApiModel::post('updatePassword', [
             'password' => $request->password
         ]);

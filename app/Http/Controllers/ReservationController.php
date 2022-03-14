@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ApiModel;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
@@ -19,36 +20,72 @@ class ReservationController extends Controller
         return view('reservation.show',['reservation'=>$reservation]);
     }
 
-    public function delete($id){
-        $reservation = ApiModel::get('getReservation/'.$id)->success;
-        return view('reservation.delete',['reservation'=>$reservation]);
+    public function delete($id)
+    {
+        $reservation = ApiModel::get('getReservation/' . $id)->success;
+        return view('reservation.delete', ['reservation' => $reservation]);
     }
 
-    public function destroy($id){
-        $reservation = ApiModel::delet('delReservation/'.$id);
+    public function destroy($id)
+    {
+        $reservation = ApiModel::delet('delReservation/' . $id);
         return redirect(route('reservation.index'));
     }
 
-    public function create(){
+    public function create()
+    {
         $city = ApiModel::get('getAgencySeven')->success;
         $typeDay = ApiModel::get('getTypeDay')->success;
         $typeRoute = ApiModel::get('getTypeRoute')->success;
-        return view('reservation.create',['cities'=>$city,'typeDays'=>$typeDay,'typeRoutes'=>$typeRoute]);
+        $vehicles = ApiModel::get('getVehicle');
+        $driver = ApiModel::get('getDriver')->success;
+        return view('reservation.create', ['cities' => $city, 'typeDays' => $typeDay,
+            'typeRoutes' => $typeRoute, 'vehicles' => $vehicles, 'drivers' => $driver]);
     }
 
-    public function vehicleChoice(Request $request){
-        $vehicles = ApiModel::get('getVehicle');
+    public function createConfirmation(Request $request)
+    {
 
-        if ($request->typeRoute_id==2 && $request->returnCity_id=="null") {
+        $validator = Validator::make($request->all(), [
+            'departureAgency_id' => 'required',
+            'date' => 'required',
+            'typeDay_id' => 'required',
+            'typeRoute_id' => 'required',
+            'vehicle_id' => 'required',
+            'driver_id' => 'required',
+        ]);
+        if ($validator->fails()) {
             return back()->withErrors([
-                'returnCity' => 'Choisissez une ville si c\'est un aller retour',
+                'formulaire' => 'Erreur: Veuillez remplir tout les champs requis',
             ]);
-        } elseif($request->typeRoute_id==1 && $request->returnCity_id!="null") {
+        }
+        if ($request->typeRoute_id == 2 && $request->returnAgency_id == null) {
             return back()->withErrors([
-                'returnCity' => 'Ne choisissez pas de ville retour si c\'est un aller simple',
+                'returnCity' => 'Erreur: Choisissez une ville de retour si c\'est un aller retour',
             ]);
-        }else{
-            return view('reservation.vehicleChoice',['vehicles'=>$vehicles]);
+        } elseif ($request->typeRoute_id == 1 && $request->returnAgency_id != null) {
+            return back()->withErrors([
+                'returnCity' => 'Erreur: Ne choisissez pas de ville retour si c\'est un aller simple',
+            ]);
+        } else {
+            $apiResponse = ApiModel::post('createReservation', [
+                'departureAgency_id' => $request->departureAgency_id,
+                'date' => $request->date,
+                'typeDay_id' => $request->typeDay_id,
+                'typeRoute_id' => $request->typeRoute_id,
+                'vehicle_id' => $request->vehicle_id,
+                'driver_id' => $request->driver_id,
+                'returnAgency_id' => $request->returnAgency_id,
+
+            ]);
+            if (isset($apiResponse->success)) {
+                $reservation = ApiModel::get('getReservation/' . $apiResponse->success->id)->success;
+                return view('reservation.show', ['reservation' => $reservation]);
+            } else {
+                return back()->withErrors([
+                    'formulaire' => 'La reservation ne peux étre accepter.',
+                ]);
+            }
         }
     }
 }
