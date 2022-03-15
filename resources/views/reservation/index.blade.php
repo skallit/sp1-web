@@ -9,6 +9,7 @@
         {{__('New reservation')}}
     </a>
 </h1>
+<p>{{ $message ?? '' }}</p>
 @stop
 
 
@@ -17,7 +18,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <table class="table table-bordered table-striped datatable">
+                <table id="reservation" class="table table-bordered table-striped datatable">
                     <thead>
                     <tr>
                         <th>{{__('numberOfReservation')}}</th>
@@ -26,11 +27,8 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($drivers as $driver)
-
-
-                        @foreach($driver->reservations as $reservation)
+                    @foreach($driver->reservations as $reservation)
                         <tr>
                             <td>{{$reservation->numberOfReservation}}</td>
                             <td>{{$driver->name}}</td>
@@ -43,7 +41,7 @@
                                 </a>
                             </td>
                         </tr>
-                        @endforeach
+                    @endforeach
                     @endforeach
                     </tbody>
                 </table>
@@ -52,6 +50,17 @@
     </div>
 </div>
 @stop
+
+@section('js')
+@parent
+<script>
+    $('.datatable').DataTable({
+        language: {
+            url: 'https://cdn.datables.net/plug_ins/1.11.3/118n/fr_fr.json'
+        }
+    });
+</script>
+@endsection
 
 
 

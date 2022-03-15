@@ -4,6 +4,9 @@
 
 @section('content_header')
 <h1 class="m-0 text-dark">{{__('Reservations ')}}{{$reservation->numberOfReservation}}</h1>
+@error('reservation')
+<div><strong>{{ $message }}</strong></div>
+@enderror
 @stop
 
 @section('content')

@@ -17,7 +17,7 @@ class ReservationController extends Controller
 
     public function show($id){
         $reservation = ApiModel::get('getReservation/'.$id)->success;
-        return view('reservation.show',['reservation'=>$reservation]);
+        return view('reservation.show', ['reservation' => $reservation]);
     }
 
     public function delete($id)
@@ -28,8 +28,16 @@ class ReservationController extends Controller
 
     public function destroy($id)
     {
-        $reservation = ApiModel::delet('delReservation/' . $id);
-        return redirect(route('reservation.index'));
+        $delete = ApiModel::delet('delReservation/' . $id);
+        if ($delete == null) {
+            return back()->withErrors([
+                'reservation' => 'La reservation ne peux étre supprimer',
+            ]);
+        } else {
+            $drivers = ApiModel::get('getReservations')->success;
+            $message = "La reservation a bien été supprimer";
+            return view('reservation.index', ['message' => $message, 'drivers' => $drivers]);
+        }
     }
 
     public function create()
@@ -80,10 +88,11 @@ class ReservationController extends Controller
             ]);
             if (isset($apiResponse->success)) {
                 $reservation = ApiModel::get('getReservation/' . $apiResponse->success->id)->success;
-                return view('reservation.show', ['reservation' => $reservation]);
+                $message = "La réservation a bien été effectuer";
+                return view('reservation.show', ['reservation' => $reservation, 'message' => $message]);
             } else {
                 return back()->withErrors([
-                    'formulaire' => 'La reservation ne peux étre accepter.',
+                    'formulaire' => 'La réservation ne peut être acceptée.',
                 ]);
             }
         }

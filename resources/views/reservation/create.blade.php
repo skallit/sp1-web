@@ -79,6 +79,7 @@
                                 <i class="fa fa-plus"></i>
                                 {{__('New driver')}}
                             </a>
+                            <p>{{ $message ?? '' }}</p>
                             <select class="custom-select form-control-border border-width-2" id="driver"
                                     name="driver_id">
                                 @foreach($drivers as $driver)
