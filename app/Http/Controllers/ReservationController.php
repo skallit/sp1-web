@@ -11,18 +11,18 @@ class ReservationController extends Controller
 {
 
     public function index(){
-        $drivers = ApiModel::get('getReservations')->success;
+        $drivers = ApiModel::get('getReservations');
         return view('reservation.index',['drivers'=>$drivers]);
     }
 
     public function show($id){
-        $reservation = ApiModel::get('getReservation/'.$id)->success;
+        $reservation = ApiModel::get('getReservation/' . $id);
         return view('reservation.show', ['reservation' => $reservation]);
     }
 
     public function delete($id)
     {
-        $reservation = ApiModel::get('getReservation/' . $id)->success;
+        $reservation = ApiModel::get('getReservation/' . $id);
         return view('reservation.delete', ['reservation' => $reservation]);
     }
 
@@ -34,7 +34,7 @@ class ReservationController extends Controller
                 'reservation' => 'La reservation ne peux étre supprimer',
             ]);
         } else {
-            $drivers = ApiModel::get('getReservations')->success;
+            $drivers = ApiModel::get('getReservations');
             $message = "La reservation a bien été supprimer";
             return view('reservation.index', ['message' => $message, 'drivers' => $drivers]);
         }
@@ -42,11 +42,11 @@ class ReservationController extends Controller
 
     public function create()
     {
-        $city = ApiModel::get('getAgencySeven')->success;
-        $typeDay = ApiModel::get('getTypeDay')->success;
-        $typeRoute = ApiModel::get('getTypeRoute')->success;
+        $city = ApiModel::get('getAgencySeven');
+        $typeDay = ApiModel::get('getTypeDay');
+        $typeRoute = ApiModel::get('getTypeRoute');
         $vehicles = ApiModel::get('getVehicle');
-        $driver = ApiModel::get('getDriver')->success;
+        $driver = ApiModel::get('getDriver');
         return view('reservation.create', ['cities' => $city, 'typeDays' => $typeDay,
             'typeRoutes' => $typeRoute, 'vehicles' => $vehicles, 'drivers' => $driver]);
     }
@@ -87,7 +87,7 @@ class ReservationController extends Controller
 
             ]);
             if (isset($apiResponse->success)) {
-                $reservation = ApiModel::get('getReservation/' . $apiResponse->success->id)->success;
+                $reservation = ApiModel::get('getReservation/' . $apiResponse->id);
                 $message = "La réservation a bien été effectuer";
                 return view('reservation.show', ['reservation' => $reservation, 'message' => $message]);
             } else {

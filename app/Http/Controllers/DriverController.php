@@ -41,15 +41,8 @@ class DriverController extends Controller
                 'phoneNumber' => $request->phoneNumber,
                 'driverLicenseNumber' => $request->driverLicenseNumber,
             ]);
-            if (isset($apiResponse->success)) {
-                $city = ApiModel::get('getAgencySeven')->success;
-                $typeDay = ApiModel::get('getTypeDay')->success;
-                $typeRoute = ApiModel::get('getTypeRoute')->success;
-                $vehicles = ApiModel::get('getVehicle');
-                $driver = ApiModel::get('getDriver')->success;
-                $message = "L'enregistrement du conducteur a été enregistrer";
-                return view('reservation.create', ['cities' => $city, 'typeDays' => $typeDay,
-                    'typeRoutes' => $typeRoute, 'vehicles' => $vehicles, 'drivers' => $driver, 'message' => $message]);
+            if (isset($apiResponse)) {
+                return view('driver.updateMessage');
             } else {
                 return back()->withErrors([
                     'formulaire' => 'Le conducteur ne peut être acceptée.',

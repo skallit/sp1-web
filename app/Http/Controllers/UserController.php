@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $user = ApiModel::get('getRegisteredUser')->success;
+        $user = ApiModel::get('getRegisteredUser');
         return view('user.index',['user'=>$user]);
     }
 
@@ -18,7 +18,7 @@ class UserController extends Controller
         $apiResponse = ApiModel::post('updatePassword', [
             'password' => $request->password
         ]);
-        if (isset($apiResponse->success)) {
+        if (isset($apiResponse)) {
             return view('user.updateMessage');
         } else {
             return back()->withErrors([

@@ -24,16 +24,17 @@
                         <th>{{__('numberOfReservation')}}</th>
                         <th>{{__('Name')}}</th>
                         <th>{{__('State')}}</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($drivers as $driver)
                     @foreach($driver->reservations as $reservation)
-                        <tr>
-                            <td>{{$reservation->numberOfReservation}}</td>
-                            <td>{{$driver->name}}</td>
-                            <td>{{$reservation->status->status}}</td>
-                            <td><a class="btn btn-default btn-xs" href="reservation/{{$reservation->id}}">
+                    <tr>
+                        <td>{{$reservation->numberOfReservation}}</td>
+                        <td>{{$driver->name}}</td>
+                        <td>{{$reservation->status->status}}</td>
+                        <td><a class="btn btn-default btn-xs" href="reservation/{{$reservation->id}}">
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 <a class="btn btn-danger btn-xs" href="reservation/{{$reservation->id}}/delete">

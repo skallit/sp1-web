@@ -45,18 +45,18 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        $apiResponse = ApiModel::post('login',[
-            'email'=>$request->email,
-            'password'=>$request->password
+        $apiResponse = ApiModel::post('login', [
+            'email' => $request->email,
+            'password' => $request->password
         ]);
 
-        if(isset($apiResponse->success)) {
-            $token = $apiResponse->success->token;
+        if (isset($apiResponse)) {
+            $token = $apiResponse->token;
 
             Session::put('api_token', $token);
 
             return redirect('home');
-        }else{
+        } else {
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ]);
