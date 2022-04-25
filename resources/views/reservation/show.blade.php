@@ -3,7 +3,7 @@
 @section('title', env('APP_NAME'))
 
 @section('content_header')
-<h1 class="m-0 text-dark">{{__('Reservations ')}}{{$reservation->numberOfReservation}}</h1>
+<h1 class="m-0 text-dark">{{__('Reservations n°')}}{{$reservation->numberOfReservation}}</h1>
 <p>{{ $message ?? '' }}</p>
 @stop
 
@@ -15,14 +15,14 @@
                 <table class="table table-bordered table-striped datatable">
                     <thead>
                     <tr>
-                        <th>{{__('numberOfReservation')}}</th>
-                        <th>{{__('date')}}</th>
-                        <th>{{__('typeDay')}}</th>
-                        <th>{{__('typeRoute')}}</th>
-                        <th>{{__('status')}}</th>
-                        <th>{{__('departure_agency / department')}}</th>
-                        <th>{{__('return_agency / department')}}</th>
-                        <th>{{__('vehicle / licence plate')}}</th>
+                        <th>{{__('Nombre de la reservation')}}</th>
+                        <th>{{__('Date')}}</th>
+                        <th>{{__('Type Journée')}}</th>
+                        <th>{{__('Type Route')}}</th>
+                        <th>{{__('Status')}}</th>
+                        <th>{{__('Agence de départ / Department')}}</th>
+                        <th>{{__('Agence de retour / Department')}}</th>
+                        <th>{{__('Vehicule / Plaque d\'immatriculation')}}</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -19,17 +19,18 @@
                 <p>{{__('Raison social: ')}}{{$user->companyName}}</p>
                 <form action="updatePassword" method="post">
                     @csrf
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                           placeholder="{{ __('password') }}">
+                    <div class="input-group mb-3">
+                        <input type="password" name="password"
+                               class="form-control @error('password') is-invalid @enderror"
+                               placeholder="{{ __('mot de passe') }}">
 
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                            </div>
                         </div>
-                    </div>
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                     @enderror

@@ -6,7 +6,7 @@
 <h1 class="m-0 text-dark">{{__('Reservations')}}
     <a href="{{route('reservation.create')}}" class="btn btn-primary float-right">
         <i class="fa fa-plus"></i>
-        {{__('New reservation')}}
+        {{__('Nouvelle reservation')}}
     </a>
 </h1>
 <p>{{ $message ?? '' }}</p>
@@ -21,9 +21,9 @@
                 <table id="reservation" class="table table-bordered table-striped datatable">
                     <thead>
                     <tr>
-                        <th>{{__('numberOfReservation')}}</th>
-                        <th>{{__('Name')}}</th>
-                        <th>{{__('State')}}</th>
+                        <th>{{__('Nombre de la reservation')}}</th>
+                        <th>{{__('Nom du conducteur')}}</th>
+                        <th>{{__('Statut')}}</th>
                         <th></th>
                     </tr>
                     </thead>

@@ -3,7 +3,7 @@
 @section('title', env('APP_NAME'))
 
 @section('content_header')
-<h1 class="m-0 text-dark">{{__('New reservation')}}</h1>
+<h1 class="m-0 text-dark">{{__('Nouvelle reservation')}}</h1>
 @stop
 
 
@@ -25,12 +25,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="date">{{__('date')}}</label>
+                            <label for="date">{{__('Date')}}</label>
                             <input type="date" class="form-control" id="date" name="date" value="date('Y-m-d')}}">
                         </div>
                         <div class="form-group">
                             <label for="typeDay">{{__('Choisissez un type de journer')}}</label>
-                            <select class="custom-select form-control-border border-width-2" id="typeDay" name="typeDay_id">
+                            <select class="custom-select form-control-border border-width-2" id="typeDay"
+                                    name="typeDay_id">
                                 @foreach($typeDays as $typeDay)
                                 <option value="{{$typeDay->id}}">{{$typeDay->type}}</option>
                                 @endforeach
@@ -77,7 +78,7 @@
                             <label for="city">{{__('Choisissez un conducteur (nom / ville)')}}</label>
                             <a href="{{route('driver.create')}}" class="btn btn-primary float-right">
                                 <i class="fa fa-plus"></i>
-                                {{__('New driver')}}
+                                {{__('Nouveau conducteur')}}
                             </a>
                             <p>{{ $message ?? '' }}</p>
                             <select class="custom-select form-control-border border-width-2" id="driver"
