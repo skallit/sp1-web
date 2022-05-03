@@ -40,14 +40,25 @@ class ReservationController extends Controller
         }
     }
 
-    public function create()
+    public function createUtilities()
     {
         $city = ApiModel::get('getAgencySeven');
         $typeDay = ApiModel::get('getTypeDay');
         $typeRoute = ApiModel::get('getTypeRoute');
-        $vehicles = ApiModel::get('getVehicle');
+        $vehicles = ApiModel::get('getVehicleUtilities');
         $driver = ApiModel::get('getDriver');
-        return view('reservation.create', ['cities' => $city, 'typeDays' => $typeDay,
+        return view('reservation.createUtilities', ['cities' => $city, 'typeDays' => $typeDay,
+            'typeRoutes' => $typeRoute, 'vehicles' => $vehicles, 'drivers' => $driver]);
+    }
+
+    public function createTourisme()
+    {
+        $city = ApiModel::get('getAgencySeven');
+        $typeDay = ApiModel::get('getTypeDay');
+        $typeRoute = ApiModel::get('getTypeRoute');
+        $vehicles = ApiModel::get('getVehicleTourisme');
+        $driver = ApiModel::get('getDriver');
+        return view('reservation.createTourisme', ['cities' => $city, 'typeDays' => $typeDay,
             'typeRoutes' => $typeRoute, 'vehicles' => $vehicles, 'drivers' => $driver]);
     }
 

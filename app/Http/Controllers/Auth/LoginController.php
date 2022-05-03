@@ -50,8 +50,8 @@ class LoginController extends Controller
             'password' => $request->password
         ]);
 
-        if (isset($apiResponse)) {
-            $token = $apiResponse->token;
+        if (isset($apiResponse->success)) {
+            $token = $apiResponse->success->token;
 
             Session::put('api_token', $token);
 

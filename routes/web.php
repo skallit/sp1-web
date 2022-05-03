@@ -26,6 +26,8 @@ Auth::routes();
 Route::middleware(\App\Http\Middleware\CheckToken::class)->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('reservation', \App\Http\Controllers\ReservationController::class);
+    Route::get('reservation/createUtilities', [\App\Http\Controllers\ReservationController::class])->name('reservation.createUtilities');
+    Route::get('reservation/createTourisme', [\App\Http\Controllers\ReservationController::class])->name('reservation.createTourisme');
     Route::get('reservation/{reservation}', [\App\Http\Controllers\ReservationController::class, 'show'])->name('reservation.show');
     Route::get('reservation/{reservation}/delete', [\App\Http\Controllers\ReservationController::class, 'delete'])->name('reservation.delete');
     Route::delete('reservation/{reservation}/destroy', [\App\Http\Controllers\ReservationController::class, 'destroy'])->name('reservation.destroy');

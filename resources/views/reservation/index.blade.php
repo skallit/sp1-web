@@ -4,9 +4,13 @@
 
 @section('content_header')
 <h1 class="m-0 text-dark">{{__('Reservations')}}
-    <a href="{{route('reservation.create')}}" class="btn btn-primary float-right">
+    <a href="{{route('reservation.createUtilities')}}" class="btn btn-primary float-right">
         <i class="fa fa-plus"></i>
-        {{__('Nouvelle reservation')}}
+        {{__('Reservation Utilitaire')}}
+    </a>
+    <a href="{{route('reservation.createTourisme')}}" class="btn btn-primary float-right">
+        <i class="fa fa-plus"></i>
+        {{__('Reservation Tourisme')}}
     </a>
 </h1>
 <p>{{ $message ?? '' }}</p>
